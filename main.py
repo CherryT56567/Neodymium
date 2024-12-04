@@ -1,4 +1,4 @@
-
+import time
 
 class Motor:
     def __init__(self, id):
@@ -47,13 +47,52 @@ class Sensor:
 class Robot:
     def __init__(self):
         # Initialization of motors, sensors, and other components
-        self.motor1 = Motor(1)
+        self.motor1 = Motor(1) # LEFT
+        self.motor2 = Motor(2) # LEFT
+        self.motor3 = Motor(3) # RIGHT
+        self.motor4 = Motor(4) # RIGHT
         self.sensor1 = Sensor(1)
+        self.pSpeed = 0
         print("Robot initialized")
 
     def start(self):
         # TODO
         print("Robot starting")
+
+    def set_speed(self, speed):
+        self.pSpeed = speed
+        self.motor1.set_speed(speed)
+        self.motor2.set_speed(speed)
+        self.motor3.set_speed(speed)
+        self.motor4.set_speed(speed)
+        
+    def move(self):
+        self.motor1.start()
+        self.motor2.start()
+        self.motor3.start()
+        self.motor4.start()
+
+    def turn(self, left):
+        if left:
+            self.motor1.set_speed(speed) # 1 2 + == Right
+            self.motor2.set_speed(speed)
+            self.motor3.set_speed(-speed)
+            self.motor4.set_speed(-speed)
+        else:
+            self.motor1.set_speed(-speed) # 1 2 + == Right
+            self.motor2.set_speed(-speed)
+            self.motor3.set_speed(speed)
+            self.motor4.set_speed(speed)
+        self.motor1.start()
+        self.motor2.start()
+        self.motor3.start()
+        self.motor4.start()
+
+    def stop(self):
+        self.motor1.stop()
+        self.motor2.stop()
+        self.motor3.stop()
+        self.motor4.stop()
 
 # Example of creating a Robot instance and starting it
 if __name__ == "__main__":
